@@ -27,20 +27,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.omnibase;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name="Omni OpMode", group="12000")
-public class OmniOpMode extends OpMode {
-    private ElapsedTime runtime = new ElapsedTime();
+public class OmniBase extends OpMode {
+    ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftFrontDrive = null;
     private DcMotor leftBackDrive = null;
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
+
+    double axial = 0;
+    double lateral = 0;
+    double yaw = 0;
 
     @Override
     public void init() {
@@ -59,10 +62,6 @@ public class OmniOpMode extends OpMode {
     @Override
     public void loop() {
         double max;
-
-        double axial = -gamepad1.left_stick_y;
-        double lateral = gamepad1.left_stick_x;
-        double yaw = gamepad1.right_stick_x;
 
         double leftFrontPower = axial + lateral + yaw;
         double rightFrontPower = axial - lateral - yaw;
@@ -90,4 +89,11 @@ public class OmniOpMode extends OpMode {
         telemetry.addData("Back  Left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
         telemetry.update();
     }
+
+    public void moveForward(double speed) { axial = speed; }
+    public void moveBackwards(double speed) { axial = -speed; }
+    public void moveLeft(double speed) { lateral = speed; }
+    public void moveRight(double speed) { lateral = -speed; }
+    public void turnLeft(double speed) { yaw = speed; }
+    public void turnRight(double speed) { yaw = -speed; }
 }
