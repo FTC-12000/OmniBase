@@ -92,8 +92,8 @@ public class OmniBaseLinear extends LinearOpMode {
 
     public void moveForward(double speed) { axial = speed; calculateMovement(); }
     public void moveBackwards(double speed) { axial = -speed; calculateMovement(); }
-    public void moveLeft(double speed) { lateral = speed; calculateMovement(); }
-    public void moveRight(double speed) { lateral = -speed; calculateMovement(); }
+    public void moveLeft(double speed) { lateral = -speed; calculateMovement(); }
+    public void moveRight(double speed) { lateral = speed; calculateMovement(); }
     public void turnLeft(double speed) { yaw = -speed; calculateMovement(); }
     public void turnRight(double speed) { yaw = speed; calculateMovement(); }
 
