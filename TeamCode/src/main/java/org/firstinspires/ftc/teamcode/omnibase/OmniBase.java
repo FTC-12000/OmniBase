@@ -96,4 +96,10 @@ public class OmniBase extends OpMode {
     public void moveRight(double speed) { lateral = -speed; }
     public void turnLeft(double speed) { yaw = speed; }
     public void turnRight(double speed) { yaw = -speed; }
+
+    public void stopMovement() {
+        axial = 0;
+        lateral = 0;
+        yaw = 0;
+    }
 }
