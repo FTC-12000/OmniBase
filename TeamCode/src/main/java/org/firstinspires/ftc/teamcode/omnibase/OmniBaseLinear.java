@@ -29,21 +29,22 @@
 
 package org.firstinspires.ftc.teamcode.omnibase;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class OmniBaseLinear extends LinearOpMode {
-    ElapsedTime runtime = new ElapsedTime();
+    private final ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftFrontDrive = null;
     private DcMotor leftBackDrive = null;
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
 
-    double axial = 0;
-    double lateral = 0;
-    double yaw = 0;
+    private double axial = 0;
+    private double lateral = 0;
+    private double yaw = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -90,12 +91,9 @@ public class OmniBaseLinear extends LinearOpMode {
         telemetry.update();
     }
 
-    public void moveForward(double speed) { axial = speed; calculateMovement(); }
-    public void moveBackwards(double speed) { axial = -speed; calculateMovement(); }
-    public void moveLeft(double speed) { lateral = -speed; calculateMovement(); }
-    public void moveRight(double speed) { lateral = speed; calculateMovement(); }
-    public void turnLeft(double speed) { yaw = -speed; calculateMovement(); }
-    public void turnRight(double speed) { yaw = speed; calculateMovement(); }
+    public void setAxialSpeed(double speed) { axial = speed; calculateMovement(); }
+    public void setLateralSpeed(double speed) { lateral = speed; calculateMovement(); }
+    public void setRotationSpeed(double speed) { yaw = speed; calculateMovement(); }
 
     public void stopMovement() {
         axial = 0;

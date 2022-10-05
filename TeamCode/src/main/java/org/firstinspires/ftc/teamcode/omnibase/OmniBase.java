@@ -35,15 +35,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class OmniBase extends OpMode {
-    ElapsedTime runtime = new ElapsedTime();
+    private final ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftFrontDrive = null;
     private DcMotor leftBackDrive = null;
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
 
-    double axial = 0;
-    double lateral = 0;
-    double yaw = 0;
+    private double axial = 0;
+    private double lateral = 0;
+    private double yaw = 0;
 
     @Override
     public void init() {
@@ -72,7 +72,7 @@ public class OmniBase extends OpMode {
         max = Math.max(max, Math.abs(leftBackPower));
         max = Math.max(max, Math.abs(rightBackPower));
 
-        if (max > 1.0) {
+        if (max > 1) {
             leftFrontPower /= max;
             rightFrontPower /= max;
             leftBackPower /= max;
@@ -90,12 +90,9 @@ public class OmniBase extends OpMode {
         telemetry.update();
     }
 
-    public void moveForward(double speed) { axial = speed; }
-    public void moveBackwards(double speed) { axial = -speed; }
-    public void moveLeft(double speed) { lateral = -speed; }
-    public void moveRight(double speed) { lateral = speed; }
-    public void turnLeft(double speed) { yaw = -speed; }
-    public void turnRight(double speed) { yaw = speed; }
+    public void setAxialSpeed(double speed) { axial = speed; }
+    public void setLateralSpeed(double speed) { lateral = speed; }
+    public void setRotationSpeed(double speed) { yaw = speed; }
 
     public void stopMovement() {
         axial = 0;

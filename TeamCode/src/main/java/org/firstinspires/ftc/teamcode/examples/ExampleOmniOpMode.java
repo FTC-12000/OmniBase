@@ -33,13 +33,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.omnibase.OmniBase;
 
-@TeleOp(name="Omni OpMode", group="12000")
-public class OmniOpMode extends OmniBase {
+@TeleOp(name="Example: Omni OpMode", group="OmniBase")
+public class ExampleOmniOpMode extends OmniBase {
     @Override
     public void loop() {
-        moveForward(-gamepad1.left_stick_y);
-        moveLeft(gamepad1.left_stick_x);
-        turnLeft(gamepad1.right_stick_x);
+        setLateralSpeed(gamepad1.left_stick_y / 2);
+        setLateralSpeed(gamepad1.left_stick_x / 2);
+        setRotationSpeed(gamepad1.right_stick_x / 2);
         super.loop();
     }
 }
