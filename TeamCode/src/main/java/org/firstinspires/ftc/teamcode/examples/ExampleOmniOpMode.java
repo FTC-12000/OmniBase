@@ -37,7 +37,7 @@ import org.firstinspires.ftc.teamcode.omnibase.OmniBase;
 public class ExampleOmniOpMode extends OmniBase {
     @Override
     public void loop() {
-        setLateralSpeed(gamepad1.left_stick_y / 2);
+        setAxialSpeed(gamepad1.left_stick_y / 2);
         setLateralSpeed(gamepad1.left_stick_x / 2);
         setRotationSpeed(gamepad1.right_stick_x / 2);
         super.loop();
