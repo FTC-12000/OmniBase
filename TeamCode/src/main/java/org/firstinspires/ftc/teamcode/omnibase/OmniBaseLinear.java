@@ -1,17 +1,14 @@
 package org.firstinspires.ftc.teamcode.omnibase;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.omnibase.hardware.OmniBot;
+
 public class OmniBaseLinear extends LinearOpMode {
+    private OmniBot omniBot;
+
     private final ElapsedTime runtime = new ElapsedTime();
-    private DcMotor leftFrontDrive = null;
-    private DcMotor leftBackDrive = null;
-    private DcMotor rightFrontDrive = null;
-    private DcMotor rightBackDrive = null;
 
     private double axial = 0;
     private double lateral = 0;
@@ -19,15 +16,7 @@ public class OmniBaseLinear extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        leftFrontDrive = hardwareMap.get(DcMotor.class, "left_front_drive");
-        leftBackDrive = hardwareMap.get(DcMotor.class, "left_back_drive");
-        rightFrontDrive = hardwareMap.get(DcMotor.class, "right_front_drive");
-        rightBackDrive = hardwareMap.get(DcMotor.class, "right_back_drive");
-
-        leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
+        omniBot = new OmniBot(hardwareMap);
 
         waitForStart();
     }
@@ -35,30 +24,30 @@ public class OmniBaseLinear extends LinearOpMode {
     public void calculateMovement() {
         double max;
 
-        double leftFrontPower = axial + lateral + yaw;
-        double rightFrontPower = axial - lateral - yaw;
-        double leftBackPower = axial - lateral + yaw;
-        double rightBackPower = axial + lateral - yaw;
+        double frontRightPower = axial - lateral - yaw;
+        double frontLeftPower = axial + lateral + yaw;
+        double backRightPower = axial + lateral - yaw;
+        double backLeftPower = axial - lateral + yaw;
 
-        max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
-        max = Math.max(max, Math.abs(leftBackPower));
-        max = Math.max(max, Math.abs(rightBackPower));
+        max = Math.max(Math.abs(frontLeftPower), Math.abs(frontRightPower));
+        max = Math.max(max, Math.abs(backLeftPower));
+        max = Math.max(max, Math.abs(backRightPower));
 
         if (max > 1.0) {
-            leftFrontPower /= max;
-            rightFrontPower /= max;
-            leftBackPower /= max;
-            rightBackPower /= max;
+            frontRightPower /= max;
+            frontLeftPower /= max;
+            backRightPower /= max;
+            backLeftPower /= max;
         }
 
-        leftFrontDrive.setPower(leftFrontPower);
-        rightFrontDrive.setPower(rightFrontPower);
-        leftBackDrive.setPower(leftBackPower);
-        rightBackDrive.setPower(rightBackPower);
+        omniBot.setFrontRightDrivePower(frontRightPower);
+        omniBot.setFrontLeftDrivePower(frontLeftPower);
+        omniBot.setBackRightDrivePower(backRightPower);
+        omniBot.setBackLeftDrivePower(backLeftPower);
 
         telemetry.addData("Run Time", runtime.toString());
-        telemetry.addData("Front Left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
-        telemetry.addData("Back  Left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
+        telemetry.addData("Front Left/Right", "%4.2f, %4.2f", frontLeftPower, frontRightPower);
+        telemetry.addData("Back  Left/Right", "%4.2f, %4.2f", backLeftPower, backRightPower);
         telemetry.update();
     }
 
