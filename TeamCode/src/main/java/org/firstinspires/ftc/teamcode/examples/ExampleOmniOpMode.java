@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.examples;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.omnibase.OmniBase;
 
+@Disabled
 @TeleOp(name="Example: Omni OpMode", group="OmniBase")
 public class ExampleOmniOpMode extends OmniBase {
     @Override

@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.examples;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.omnibase.OmniBaseLinear;
 
+@Disabled
 @Autonomous(name="Example: Auto Omni OpMode", group="OmniBase")
 public class ExampleOmniAutoOpMode extends OmniBaseLinear {
     @Override
