@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.omnibase.hardware.OmniBot;
 
 public class OmniBase extends OpMode {
-    private OmniBot onmiBot;
+    public OmniBot onmiBot;
 
     private final ElapsedTime runtime = new ElapsedTime();
 
