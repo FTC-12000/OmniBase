@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.omnibase.hardware.OmniBot;
 
 public class OmniBase extends OpMode {
-    public OmniBot onmiBot;
+    public OmniBot omniBot;
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -16,7 +16,7 @@ public class OmniBase extends OpMode {
 
     @Override
     public void init() {
-        onmiBot = new OmniBot(hardwareMap);
+        omniBot = new OmniBot(hardwareMap);
     }
 
     @Override
@@ -39,10 +39,10 @@ public class OmniBase extends OpMode {
             backLeftPower /= max;
         }
 
-        onmiBot.setFrontRightDrivePower(frontRightPower);
-        onmiBot.setFrontLeftDrivePower(frontLeftPower);
-        onmiBot.setBackRightDrivePower(backRightPower);
-        onmiBot.setBackLeftDrivePower(backLeftPower);
+        omniBot.setFrontRightDrivePower(frontRightPower);
+        omniBot.setFrontLeftDrivePower(frontLeftPower);
+        omniBot.setBackRightDrivePower(backRightPower);
+        omniBot.setBackLeftDrivePower(backLeftPower);
 
         telemetry.addData("Run Time", runtime.toString());
         telemetry.addData("Front Left/Right", "%4.2f, %4.2f", frontLeftPower, frontRightPower);
