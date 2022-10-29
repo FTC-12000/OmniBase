@@ -28,9 +28,11 @@ public class PowerPlayTeleOp extends OmniBase {
             turbo = !turbo;
         }
 
-        setAxialSpeed(-gamepad1.left_stick_y / (turbo ? 1 : 2));
-        setLateralSpeed(gamepad1.left_stick_x / (turbo ? 1 : 2));
-        setRotationSpeed(gamepad1.right_stick_x / (turbo ? 1 : 2));
+        boolean trigger = gamepad1.left_trigger > 0.7 || gamepad1.right_trigger > 0.7;
+
+        setAxialSpeed(-gamepad1.left_stick_y / ((turbo || trigger) ? 1 : 2));
+        setLateralSpeed(gamepad1.left_stick_x / ((turbo || trigger) ? 1 : 2));
+        setRotationSpeed(gamepad1.right_stick_x / ((turbo || trigger) ? 1 : 2));
 
         telemetry.addData("Turbo", turbo ? "On" : "Off");
         super.loop();
