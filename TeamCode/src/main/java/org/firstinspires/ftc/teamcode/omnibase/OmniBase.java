@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.omnibase.hardware.OmniBot;
 public class OmniBase extends OpMode {
     public OmniBot omniBot;
 
-    private final ElapsedTime runtime = new ElapsedTime();
+    public final ElapsedTime runtime = new ElapsedTime();
 
     private double axial = 0;
     private double lateral = 0;

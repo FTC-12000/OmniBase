@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.omnibase.hardware;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
@@ -61,10 +62,10 @@ public class OmniBot {
         this.backRightDrive = backRightDrive;
         this.backLeftDrive = backLeftDrive;
 
-        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
-        frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
-        backRightDrive.setDirection(DcMotor.Direction.REVERSE);
-        backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotor.Direction.FORWARD);
+        backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
     }
 
     /**
