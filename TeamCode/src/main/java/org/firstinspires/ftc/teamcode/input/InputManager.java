@@ -7,14 +7,20 @@ import java.util.Map;
 
 public class InputManager {
     private final Gamepad gamepad;
-    private final Map<Button, InputHandler> binds = new HashMap<>();
+    private final Map<String, Input> binds = new HashMap<>();
 
     public InputManager(Gamepad gamepad) {
         this.gamepad = gamepad;
     }
 
-    public registerInput(Button button, InputType type, InputHandler input) {
+    public void registerInput(String name, Input input) {
+        binds.put(name, input);
+    }
 
+    public void loop() {
+        for (Input input : binds.values()) {
+
+        }
     }
 
     private boolean getButton(Button button) {
